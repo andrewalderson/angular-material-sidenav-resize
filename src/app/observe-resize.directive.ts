@@ -156,6 +156,18 @@ export class ObserveResizeDirective implements AfterContentInit, OnDestroy {
     this._unsubscribe();
   }
 
+  /**
+   * This code does basically the same thing as
+   * <code>
+   *  this._resizeObserver = new ResizeObserver((entries) =>
+   *      this.event.emit(entries)
+   *  );
+   *
+   *  this._resizeObserver.observe(this._elementRef.nativeElement);
+   *  </code>
+   *
+   *  In this version we are wrapping the ResizeObserver callback in an Observable
+   */
   private _subscribe() {
     this._unsubscribe();
     const stream = this._sizeObserver.observe(this._elementRef);
