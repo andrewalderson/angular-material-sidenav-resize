@@ -5,10 +5,7 @@ import {
   Component,
   ElementRef,
   Input,
-  OnDestroy,
-  OnInit,
 } from "@angular/core";
-import { MatSidenavContainer } from "@angular/material/sidenav";
 
 @Component({
   selector: "app-expansion-viewport",
@@ -27,14 +24,11 @@ import { MatSidenavContainer } from "@angular/material/sidenav";
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ExpansionViewportComponent implements OnInit, OnDestroy {
+export class ExpansionViewportComponent {
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
-    private _container: MatSidenavContainer,
     private _elementRef: ElementRef<HTMLElement>
   ) {}
-
-  private _resizeObserver?: ResizeObserver;
 
   @Input()
   get expanded() {
@@ -49,17 +43,6 @@ export class ExpansionViewportComponent implements OnInit, OnDestroy {
     }
   }
   private _expanded = false;
-
-  ngOnInit() {
-    this._resizeObserver = new ResizeObserver(() => {
-      this._container.updateContentMargins();
-    });
-    this._resizeObserver.observe(this._elementRef.nativeElement);
-  }
-
-  ngOnDestroy(): void {
-    this._resizeObserver?.unobserve(this._elementRef.nativeElement);
-  }
 
   toggle(isExpanded: boolean = !this.expanded) {
     this._setExpanded(isExpanded);

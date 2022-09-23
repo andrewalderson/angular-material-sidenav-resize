@@ -11,6 +11,7 @@ import {
   MatDrawerAutosizeHackDirective,
   MatSidenavAutosizeHackDirective,
 } from "./autosize-hack.directive";
+import { ObserveResizeDirective } from './observe-resize.directive';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {
     ExpansionViewportComponent,
     MatDrawerAutosizeHackDirective,
     MatSidenavAutosizeHackDirective,
+    ObserveResizeDirective,
   ],
   imports: [
     BrowserModule,

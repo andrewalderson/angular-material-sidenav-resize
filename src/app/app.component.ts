@@ -3,8 +3,13 @@ import { Component } from "@angular/core";
 @Component({
   selector: "app-root",
   template: `
-    <mat-sidenav-container fullscreen autosize>
-      <mat-sidenav mode="side" opened="true" #sidenav>
+    <mat-sidenav-container fullscreen autosize #container>
+      <mat-sidenav
+        mode="side"
+        opened="true"
+        #sidenav
+        (appObserveResize)="container.updateContentMargins()"
+      >
         <app-expansion-viewport #viewport expanded="true">
           <mat-toolbar>
             <button
