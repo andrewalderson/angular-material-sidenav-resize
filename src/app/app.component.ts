@@ -3,8 +3,8 @@ import { Component } from "@angular/core";
 @Component({
   selector: "app-root",
   template: `
-    <mat-sidenav-container #container fullscreen>
-      <mat-sidenav mode="side" opened="true" #sidenav appDrawerAutosizeHack>
+    <mat-sidenav-container fullscreen autosize>
+      <mat-sidenav mode="side" opened="true" #sidenav>
         <app-expansion-viewport #viewport expanded="true">
           <mat-toolbar>
             <button
@@ -17,11 +17,13 @@ import { Component } from "@angular/core";
           </mat-toolbar>
         </app-expansion-viewport>
       </mat-sidenav>
-      <mat-toolbar>
-        <button mat-icon-button (click)="sidenav.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-      </mat-toolbar>
+      <mat-sidenav-content>
+        <mat-toolbar>
+          <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </mat-toolbar>
+      </mat-sidenav-content>
     </mat-sidenav-container>
   `,
   styles: [

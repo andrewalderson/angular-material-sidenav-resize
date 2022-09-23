@@ -7,13 +7,17 @@ import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppComponent } from "./app.component";
 import { ExpansionViewportComponent } from "./expansion-viewport.component";
-import { DrawerAutosizeHackDirective } from "./drawer-autosize-hack.directive";
+import {
+  MatDrawerAutosizeHackDirective,
+  MatSidenavAutosizeHackDirective,
+} from "./autosize-hack.directive";
 
 @NgModule({
   declarations: [
     AppComponent,
     ExpansionViewportComponent,
-    DrawerAutosizeHackDirective,
+    MatDrawerAutosizeHackDirective,
+    MatSidenavAutosizeHackDirective,
   ],
   imports: [
     BrowserModule,

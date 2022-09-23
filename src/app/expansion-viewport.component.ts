@@ -1,20 +1,14 @@
-import {
-  animate,
-  AnimationEvent,
-  state,
-  style,
-  transition,
-  trigger,
-} from "@angular/animations";
 import { BooleanInput, coerceBooleanProperty } from "@angular/cdk/coercion";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   Input,
+  OnDestroy,
   OnInit,
 } from "@angular/core";
-import { Subject } from "rxjs";
+import { MatSidenavContainer } from "@angular/material/sidenav";
 
 @Component({
   selector: "app-expansion-viewport",
@@ -23,41 +17,24 @@ import { Subject } from "rxjs";
     `
       :host {
         display: block;
+        width: 256px;
+        transition: width 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+      :host.is-collapsed {
+        width: 68px;
       }
     `,
   ],
-  animations: [
-    trigger("expansion", [
-      state(
-        "expanded",
-        style({
-          width: "256px",
-        })
-      ),
-      state(
-        "collapsed",
-        style({
-          width: "68px",
-        })
-      ),
-      transition("expanded <=> collapsed", [
-        animate("400ms cubic-bezier(0.25, 0.8, 0.25, 1)"),
-      ]),
-    ]),
-  ],
-  host: {
-    "[@expansion]": "_getExpansionState()",
-    "(@expansion.start)": "_animationStarted.next($event)",
-    "(@expansion.done)": "_animationDone.next($event)",
-  },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ExpansionViewportComponent {
-  constructor(private _changeDetectorRef: ChangeDetectorRef) {}
+export class ExpansionViewportComponent implements OnInit, OnDestroy {
+  constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
+    private _container: MatSidenavContainer,
+    private _elementRef: ElementRef<HTMLElement>
+  ) {}
 
-  readonly _animationStarted = new Subject<AnimationEvent>();
-
-  readonly _animationDone = new Subject<AnimationEvent>();
+  private _resizeObserver?: ResizeObserver;
 
   @Input()
   get expanded() {
@@ -66,26 +43,42 @@ export class ExpansionViewportComponent {
   set expanded(value: BooleanInput) {
     const expanded = coerceBooleanProperty(value);
     if (this._expanded !== expanded) {
-      this._expanded = expanded;
+      this._setExpanded(expanded);
 
       this._changeDetectorRef.markForCheck();
     }
   }
   private _expanded = false;
 
-  toggle() {
-    this.expanded = !this.expanded;
+  ngOnInit() {
+    this._resizeObserver = new ResizeObserver(() => {
+      this._container.updateContentMargins();
+    });
+    this._resizeObserver.observe(this._elementRef.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this._resizeObserver?.unobserve(this._elementRef.nativeElement);
+  }
+
+  toggle(isExpanded: boolean = !this.expanded) {
+    this._setExpanded(isExpanded);
   }
 
   collapse() {
-    this.expanded = false;
+    this.toggle(false);
   }
 
   expand() {
-    this.expanded = true;
+    this.toggle(true);
   }
 
-  _getExpansionState() {
-    return this.expanded ? "expanded" : "collapsed";
+  _setExpanded(isExpanded: boolean) {
+    this._expanded = isExpanded;
+    if (this._expanded) {
+      this._elementRef.nativeElement.classList.remove("is-collapsed");
+    } else {
+      this._elementRef.nativeElement.classList.add("is-collapsed");
+    }
   }
 }
