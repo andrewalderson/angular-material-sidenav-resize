@@ -6,20 +6,23 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppComponent } from "./app.component";
-import { ExpansionViewportComponent } from "./expansion-viewport.component";
+import { CollapsableViewportComponent } from "./collapsable-viewport.component";
 import {
   MatDrawerAutosizeHackDirective,
   MatSidenavAutosizeHackDirective,
 } from "./autosize-hack.directive";
-import { ObserveResizeDirective } from './observe-resize.directive';
+import { ObserveResizeDirective } from "./observe-resize.directive";
+import { NavigationComponent } from "./navigation.component";
+import { MatListModule } from "@angular/material/list";
 
 @NgModule({
   declarations: [
     AppComponent,
-    ExpansionViewportComponent,
+    CollapsableViewportComponent,
     MatDrawerAutosizeHackDirective,
     MatSidenavAutosizeHackDirective,
     ObserveResizeDirective,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +31,7 @@ import { ObserveResizeDirective } from './observe-resize.directive';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

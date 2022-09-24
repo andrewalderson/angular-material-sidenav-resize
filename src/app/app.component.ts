@@ -10,7 +10,10 @@ import { Component } from "@angular/core";
         #sidenav
         (appObserveResize)="container.updateContentMargins()"
       >
-        <app-expansion-viewport #viewport expanded="true">
+        <app-collapsable-viewport
+          #viewport
+          [style.width]="viewport.collapsed ? '68px' : '256px'"
+        >
           <mat-toolbar>
             <button
               mat-icon-button
@@ -20,7 +23,7 @@ import { Component } from "@angular/core";
               <mat-icon>chevron_left</mat-icon>
             </button>
           </mat-toolbar>
-        </app-expansion-viewport>
+        </app-collapsable-viewport>
       </mat-sidenav>
       <mat-sidenav-content>
         <mat-toolbar>
