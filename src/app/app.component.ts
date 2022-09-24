@@ -23,6 +23,7 @@ import { Component } from "@angular/core";
               <mat-icon>chevron_left</mat-icon>
             </button>
           </mat-toolbar>
+          <app-navigation [collapsed]="viewport.collapsed"></app-navigation>
         </app-collapsable-viewport>
       </mat-sidenav>
       <mat-sidenav-content>
