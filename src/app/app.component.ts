@@ -10,21 +10,7 @@ import { Component } from "@angular/core";
         #sidenav
         (appObserveResize)="container.updateContentMargins()"
       >
-        <app-collapsable-viewport
-          #viewport
-          [style.width]="viewport.collapsed ? '68px' : '256px'"
-        >
-          <mat-toolbar>
-            <button
-              mat-icon-button
-              class="collapse-button"
-              (click)="viewport.toggle()"
-            >
-              <mat-icon>chevron_left</mat-icon>
-            </button>
-          </mat-toolbar>
-          <app-navigation [collapsed]="viewport.collapsed"></app-navigation>
-        </app-collapsable-viewport>
+        <app-navigation></app-navigation>
       </mat-sidenav>
       <mat-sidenav-content>
         <mat-toolbar>
@@ -35,12 +21,5 @@ import { Component } from "@angular/core";
       </mat-sidenav-content>
     </mat-sidenav-container>
   `,
-  styles: [
-    `
-      .collapse-button {
-        margin-left: auto;
-      }
-    `,
-  ],
 })
 export class AppComponent {}

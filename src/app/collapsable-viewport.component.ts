@@ -18,7 +18,8 @@ import { AnimationEvent } from "@angular/animations";
     `
       :host {
         display: block;
-        overflow-x: hidden;
+        position: relative;
+        overflow: hidden;
         transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
         transition-duration: 300ms;
         transition-property: width, height;
