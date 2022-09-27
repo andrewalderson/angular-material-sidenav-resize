@@ -2,11 +2,12 @@
 
 This is a sample of how to add an animation when changing the width of the Material Sidenav or Drawer components.
 Currently this functionality is not supported. The 'autosize' functionality of the container component only
-supports resizing without an animation.
+supports resizing without an animation. The problem with the current implementation 
+is that class added to the contianer ('mat-drawer-transition') to handle the animations interfers with proper adjustment of the container margins and causes the
+updating of teh margins to lag behind the updating of the with of the drawer.
 
-This smaple uses an inner viewport component that encapsulates the resizing and width animation and
-a directive that handles modifying the drawer to make this work.
-
-NOTE: In this sample the 'autosize' property on the drawer container is not set becuase it is superflous
-with this directive. Once the drawer supports animating the resize this directive can be removed and
-the autosize property can be used instead.
+This sample uses a directive that handles removing the 'mat-drawer-transition' class
+after the animations are completed. It also adds a directive that encapsulates
+observing the resize of the drawer and updating the containers content margins.
+It also uses an internal 'viewport' component that encapsulates the animations
+for resizing the width of the drawer. We are not actually resizing the drawer but this internal component. The drawer is set to be the width of this internal 'viewport'.
