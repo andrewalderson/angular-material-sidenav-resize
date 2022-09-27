@@ -81,6 +81,11 @@ import {
         transform: translateX(-10px);
       }
 
+      .ng-animate-disabled .app-navigation-item-text,
+      .ng-animate-disabled.app-navigation-item-text {
+        transition: none;
+      }
+
       button.app-navigation-collapse-button {
         margin-left: auto;
       }
