@@ -31,6 +31,8 @@ import {
             mat-icon-button
             class="app-navigation-collapse-button"
             (click)="viewport.toggle()"
+            aria-label="Collapse and expand main navigation"
+            [attr.aria-expanded]="collapsed ? false : true"
           >
             <mat-icon>chevron_left</mat-icon>
           </button>
