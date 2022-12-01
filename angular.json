@@ -108,6 +108,9 @@
           "options": {
             "browserTarget": "angular-material-sidenav-resize:build"
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
