@@ -40,7 +40,7 @@ jobs:
         run: |
           echo ${{ github.event.repository.name }}
           npm install
-          npm build -- --base-href=/${{ github.event.repository.name }}/
+          npm run build -- --base-href=/${{ github.event.repository.name }}/
           cp ${GITHUB_WORKSPACE}/dist/${{ github.event.repository.name }}/index.html ${GITHUB_WORKSPACE}/dist/${{ github.event.repository.name }}/404.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
