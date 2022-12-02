@@ -39,7 +39,7 @@ jobs:
       - name: Prepare and deploy
         run: |
           npm install
-          npm run ng build --base-href /${{ github.event.repository.name }}/
+          npm run ng build --base-href="/${{ github.event.repository.name }}/"
           cp ${GITHUB_WORKSPACE}/dist/${{ github.event.repository.name }}/index.html ${GITHUB_WORKSPACE}/dist/${{ github.event.repository.name }}/404.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
