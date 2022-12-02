@@ -34,7 +34,7 @@ jobs:
       - name: Prepare and deploy
         run: |
           npm install
-          npm run ng build --base-href=/${{ github.event.repository.name }}/ --output-path dist
+          npm run ng build --base-href=/${{ github.event.repository.name }}/ --output-path=dist
           cp dist/index.html dist/404.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
