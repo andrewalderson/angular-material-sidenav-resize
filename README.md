@@ -1,5 +1,7 @@
 # Angular Material Sidenav Resize
 
+[Demo](https://andrewalderson.github.io/angular-material-sidenav-resize)
+
 This is a sample of how to add an animation when changing the width of the Material Sidenav or Drawer components.
 Currently this functionality is not supported. The 'autosize' functionality of the container component only
 supports resizing without an animation. The problem with the current implementation 
